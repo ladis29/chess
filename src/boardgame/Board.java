@@ -55,6 +55,9 @@ public class Board {
 	}
 	
 	public boolean thereIsAPiece(Position position) {
+		if (!positionExists(position)) {
+			throw new BoardException("Esta posição não existe");
+		}
 		return piece(position) != null;
 	}
 
