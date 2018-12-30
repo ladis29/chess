@@ -27,6 +27,7 @@ public class ChessMatch {
 		return mat;
 	}
 	
+	//Colocando as peças no tabuleiro
 	private void initialSetup() {
 		board.placePiece(new Rook(board,  Color.WHITE), new Position(0,7));
 		board.placePiece(new King(board,  Color.WHITE), new Position(0,4));
