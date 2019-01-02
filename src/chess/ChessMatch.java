@@ -29,6 +29,7 @@ public class ChessMatch {
 		return mat;
 	}
 	
+	//Metodo que movimenta as peças
 	public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
 		Position source = sourcePosition.toPosition();
 		Position target = targetPosition.toPosition();
@@ -37,6 +38,7 @@ public class ChessMatch {
 		return (ChessPiece)capturedPiece;
 	}
 	
+	//executa a movimentação de fato
 	private Piece makeMove(Position source, Position target) {
 		Piece p = board.removePiece(source);
 		Piece capturedPiece = board.removePiece(target);
@@ -44,6 +46,7 @@ public class ChessMatch {
 		return capturedPiece;
 	}
 	
+	//valida se na posição informada para iniciar o movimento desejado tem uma peça
 	private void validateSourcePosition(Position position) {
 		if (!board.thereIsAPiece(position)) {
 			throw new ChessException("Não há peça na posição informada");

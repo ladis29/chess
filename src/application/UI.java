@@ -33,6 +33,16 @@ public class UI {
 	public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
+	/*
+	 * O código a seguir serve para limpara a tela após cada jogada e foi encontrado no seguinte endereço:
+	 * https://stackoverflow.com/questions/2979383/java-clear-the-console
+	 */
+	public static void clearScreen() {
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
+	}
+
+	// Método que recebe a posição informada pelo usuário para mover a peça
 	public static ChessPosition readChessPosition(Scanner sc) {
 		try {
 			String s = sc.nextLine();
