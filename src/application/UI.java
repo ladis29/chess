@@ -1,15 +1,19 @@
 package application;
 
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import chess.ChessPiece;
+import chess.ChessPosition;
 import chess.Color;
 
 public class UI {
 
 	/*
 	 * Os códigos a seguir foram enconttrados em:
-	 * https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-using-system-out-println
-	 * servem para imprimir cor nas peças no console
-	*/
+	 * https://stackoverflow.com/questions/5762491/how-to-print-color-in-console-
+	 * using-system-out-println servem para imprimir cor nas peças no console
+	 */
 	public static final String ANSI_RESET = "\u001B[0m";
 	public static final String ANSI_BLACK = "\u001B[30m";
 	public static final String ANSI_RED = "\u001B[31m";
@@ -29,7 +33,20 @@ public class UI {
 	public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
-	//Formato como o tabuleiro será exibido no console
+	public static ChessPosition readChessPosition(Scanner sc) {
+		try {
+			String s = sc.nextLine();
+			char column = s.charAt(0);
+			int row = Integer.parseInt(s.substring(1));
+			return new ChessPosition(column, row);
+
+		} catch (RuntimeException e) {
+			throw new InputMismatchException("Erro lendo a posição informada, valores válidos são de 'a1' a 'h8'");
+		}
+
+	}
+
+	// Formato como o tabuleiro será exibido no console
 	public static void printBoard(ChessPiece[][] pieces) {
 		System.out.println("  a b c d e f g h");
 		for (int i = 0; i < pieces.length; i++) {
@@ -43,7 +60,9 @@ public class UI {
 		System.out.println("  a b c d e f g h");
 
 	}
-	//impressão das peças no console considerando a cor de cada peça e que o fundo será escuro
+
+	// impressão das peças no console considerando a cor de cada peça e que o fundo
+	// será escuro
 	private static void printPiece(ChessPiece piece) {
 		if (piece == null) {
 			System.out.print("-");
