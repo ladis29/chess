@@ -28,6 +28,13 @@ public class ChessMatch {
 		} // fim do for que percorre as linhas
 		return mat;
 	}
+	
+	// Metodo que marca as casas para os possíveis movimento de cada peça
+	public boolean[][] possibleMoves(ChessPosition sourcePosition){
+		Position position = sourcePosition.toPosition();
+		validateSourcePosition(position);
+		return board.piece(position).possibleMoves();
+	}
 
 	// Metodo que movimenta as peças
 	public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
