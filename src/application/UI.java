@@ -3,6 +3,7 @@ package application;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import chess.ChessMatch;
 import chess.ChessPiece;
 import chess.ChessPosition;
 import chess.Color;
@@ -46,7 +47,7 @@ public class UI {
 	// Método que recebe a posição informada pelo usuário para mover a peça
 	public static ChessPosition readChessPosition(Scanner sc) {
 		try {
-			String s = sc.nextLine();
+			String s = sc.nextLine().toLowerCase();
 			char column = s.charAt(0);
 			int row = Integer.parseInt(s.substring(1));
 			return new ChessPosition(column, row);
@@ -55,6 +56,13 @@ public class UI {
 			throw new InputMismatchException("Erro lendo a posição informada, valores válidos são de 'a1' a 'h8'");
 		}
 
+	}
+	
+	public static void printMatch(ChessMatch chessMatch) {
+		printBoard(chessMatch.getPieces());
+		System.out.println();
+		System.out.println("Jogada : " + chessMatch.getTurn());
+		System.out.println("Esperando Jogador : " + chessMatch.getCurrentPlayer());
 	}
 
 	// Formato como o tabuleiro será exibido no console
@@ -90,16 +98,16 @@ public class UI {
 	// será escuro
 	private static void printPiece(ChessPiece piece, boolean background) {
 		if (background) {
-			System.out.print(ANSI_RED_BACKGROUND);
+			System.out.print(ANSI_BLUE_BACKGROUND);
 		}
 
 		if (piece == null) {
 			System.out.print("-" + ANSI_RESET);
 		} else {
-			if (piece.getColor() == Color.WHITE) {
+			if (piece.getColor() == Color.BRANCO) {
 				System.out.print(ANSI_WHITE + piece + ANSI_RESET);
 			} else {
-				System.out.print(ANSI_YELLOW + piece + ANSI_RESET);
+				System.out.print(ANSI_RED + piece + ANSI_RESET);
 			}
 		}
 		System.out.print(" ");
