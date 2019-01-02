@@ -34,7 +34,8 @@ public class UI {
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
 	/*
-	 * O código a seguir serve para limpara a tela após cada jogada e foi encontrado no seguinte endereço:
+	 * O código a seguir serve para limpara a tela após cada jogada e foi encontrado
+	 * no seguinte endereço:
 	 * https://stackoverflow.com/questions/2979383/java-clear-the-console
 	 */
 	public static void clearScreen() {

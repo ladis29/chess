@@ -16,7 +16,7 @@ public class ChessMatch {
 		initialSetup();
 	}
 
-	//Coloca aas peças informadas nas suas posições no tabuleiro
+	// Coloca aas peças informadas nas suas posições no tabuleiro
 	public ChessPiece[][] getPieces() {
 		ChessPiece[][] mat = new ChessPiece[board.getRows()][board.getColumns()];
 		for (int i = 0; i < board.getRows(); i++) {
@@ -28,28 +28,31 @@ public class ChessMatch {
 		} // fim do for que percorre as linhas
 		return mat;
 	}
-	
-	//Metodo que movimenta as peças
+
+	// Metodo que movimenta as peças
 	public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
 		Position source = sourcePosition.toPosition();
 		Position target = targetPosition.toPosition();
 		validateSourcePosition(source);
 		Piece capturedPiece = makeMove(source, target);
-		return (ChessPiece)capturedPiece;
+		return (ChessPiece) capturedPiece;
 	}
-	
-	//executa a movimentação de fato
+
+	// executa a movimentação de fato
 	private Piece makeMove(Position source, Position target) {
 		Piece p = board.removePiece(source);
 		Piece capturedPiece = board.removePiece(target);
 		board.placePiece(p, target);
 		return capturedPiece;
 	}
-	
-	//valida se na posição informada para iniciar o movimento desejado tem uma peça
+
+	// valida se na posição informada para iniciar o movimento desejado tem uma peça
 	private void validateSourcePosition(Position position) {
 		if (!board.thereIsAPiece(position)) {
 			throw new ChessException("Não há peça na posição informada");
+		}
+		if (!board.piece(position).isThereAnnyPossibleMove()) {
+			throw new ChessException("Não existem movimentos possíveis para a peça escolhida");
 		}
 	}
 

@@ -6,14 +6,21 @@ import chess.Color;
 
 public class King extends ChessPiece {
 
-	//Cria os Reis(KING em inglês) e imprime um 'K' nas posições informadas para essa peça
+	// Cria os Reis(KING em inglês) e imprime um 'K' nas posições informadas para
+	// essa peça
 	public King(Board board, Color color) {
 		super(board, color);
 	}
-	
+
 	@Override
 	public String toString() {
 		return "K";
+	}
+
+	@Override
+	public boolean[][] possibleMoves() {
+		boolean[][] mat = new boolean[getBoard().getRows()][getBoard().getColumns()];
+		return mat;
 	}
 
 }
