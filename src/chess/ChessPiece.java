@@ -17,9 +17,20 @@ public abstract class ChessPiece extends Piece {
 	public Color getColor() {
 		return color;
 	}
-	
+
+	/*
+	 * Este método foi criado para informar a posição das peças à classe ChessMatch
+	 * para que esta pudesse verificar a ocasião de uma situação de cheque ou cheque
+	 * mate. Isso foi necessário porque devido ao encapsulamento(protected) não é
+	 * possível para a classe ChessMatch acessar o posicionamento de uma peça
+	 * consultando a classe Piece.
+	 */
+	public ChessPosition getChessPosition() {
+		return ChessPosition.fromPosition(position);
+	}
+
 	protected boolean isThereOpponentPiece(Position position) {
-		ChessPiece p = (ChessPiece)getBoard().piece(position);
+		ChessPiece p = (ChessPiece) getBoard().piece(position);
 		return p != null && p.getColor() != color;
 	}
 

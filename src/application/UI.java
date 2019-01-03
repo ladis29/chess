@@ -60,7 +60,7 @@ public class UI {
 		}
 
 	}
-	
+
 	public static void printMatch(ChessMatch chessMatch, List<ChessPiece> captured) {
 		printBoard(chessMatch.getPieces());
 		System.out.println();
@@ -68,6 +68,9 @@ public class UI {
 		System.out.println();
 		System.out.println("Jogada : " + chessMatch.getTurn());
 		System.out.println("Esperando Jogador : " + chessMatch.getCurrentPlayer());
+		if (chessMatch.getCheck()) {
+			System.out.println("CHECK!!!!!!");
+		}
 	}
 
 	// Formato como o tabuleiro será exibido no console
@@ -117,11 +120,13 @@ public class UI {
 		}
 		System.out.print(" ");
 	}
-	
-	//Imprime as peças capturadas na tela
+
+	// Imprime as peças capturadas na tela
 	public static void printCapturedPieces(List<ChessPiece> captured) {
-		List<ChessPiece> white = captured.stream().filter(x -> x.getColor() == Color.BRANCO).collect(Collectors.toList());
-		List<ChessPiece> black = captured.stream().filter(x -> x.getColor() == Color.VERMELHO).collect(Collectors.toList());
+		List<ChessPiece> white = captured.stream().filter(x -> x.getColor() == Color.BRANCO)
+				.collect(Collectors.toList());
+		List<ChessPiece> black = captured.stream().filter(x -> x.getColor() == Color.VERMELHO)
+				.collect(Collectors.toList());
 		System.out.println("Peças capturadas");
 		System.out.print("Brancas: ");
 		System.out.print(ANSI_WHITE);
@@ -131,7 +136,7 @@ public class UI {
 		System.out.print(ANSI_RED);
 		System.out.println(Arrays.toString(black.toArray()));
 		System.out.println(ANSI_RESET);
-		
+
 	}
 
 }
