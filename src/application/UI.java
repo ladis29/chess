@@ -67,10 +67,16 @@ public class UI {
 		printCapturedPieces(captured);
 		System.out.println();
 		System.out.println("Jogada : " + chessMatch.getTurn());
-		System.out.println("Esperando Jogador : " + chessMatch.getCurrentPlayer());
-		if (chessMatch.getCheck()) {
-			System.out.println("CHECK!!!!!!");
+		if (!chessMatch.getCheckmate()) {
+			System.out.println("Esperando Jogador : " + chessMatch.getCurrentPlayer());
+			if (chessMatch.getCheck()) {
+				System.out.println("CHECK!!!!!!");
+			}
+		}else {
+			System.out.println("CHEQUE MATE!!!!!!!!");
+			System.out.println("VENCEDOR: "+ chessMatch.getCurrentPlayer());
 		}
+		
 	}
 
 	// Formato como o tabuleiro será exibido no console
